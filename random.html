@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - Go</title>
+    <title>Contact - Go</title>
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
   </head>
   <body>
     <header class="text-gray-600 body-font">
@@ -46,6 +47,8 @@
         </nav>
         <button
           class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
+          hx-get="/selectAll"
+          hx-target="#selectAll"
         >
           DB SELECT *
           <svg
@@ -63,13 +66,19 @@
       </div>
     </header>
     <main>
-      <div class="flex justify-center items-center min-h-screen">
-        <h1 class="text-3xl">About Me</h1>
+      <div hx-get="/randomFood" hx-trigger="load">
+         <div class="h-screen bg-white">
+            <div class="flex justify-center items-center h-full">
+              <img class="h-16 w-16" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="">
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
       <table
         id="selectAll"
         class="flex flex-wrap w-full gap-4 py-4 rounded-lg"
-      ></table>
+        ></table>
     </main>
   </body>
 </html>
