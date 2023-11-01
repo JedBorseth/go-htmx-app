@@ -26,6 +26,7 @@ func main() {
 	http.HandleFunc("/addUser", addUser)
 	http.HandleFunc("/selectAll", selectAll)
 	http.HandleFunc("/randomFood", randomFood)
+	http.HandleFunc("/randomDrink", getTableRow)
 
 	fmt.Print("\033[H\033[2J")
 	text := fmt.Sprintf("\x1b[%dm%s\x1b[0m", 34, "\n\n\n ** Server Started at http://localhost:3333 ** \n\n\n\n\n\n\n\n\n\n\n\n")
