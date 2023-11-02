@@ -26,7 +26,8 @@ func main() {
 	http.HandleFunc("/addUser", addUser)
 	http.HandleFunc("/selectAll", selectAll)
 	http.HandleFunc("/randomFood", randomFood)
-	http.HandleFunc("/randomDrink", getTableRow)
+	http.HandleFunc("/tableRow", getTableRow)
+	http.HandleFunc("/deleteUser", deleteUser)
 
 	fmt.Print("\033[H\033[2J")
 	text := fmt.Sprintf("\x1b[%dm%s\x1b[0m", 34, "\n\n\n ** Server Started at http://localhost:3333 ** \n\n\n\n\n\n\n\n\n\n\n\n")
@@ -75,7 +76,9 @@ func testRoute(w http.ResponseWriter, r *http.Request) {
 type Users struct {
 	ID            int64  `field:"id"`                      
     Name      string `field:"name"`           
-    Email      string `field:"email"`                     
+    Email      string `field:"email"`
+	CreatedAt string `field:"created_at"`
+	UpdatedAt string `field:"updated_at"`                
 }
 func selectAll(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got /selectAll request\n")
@@ -92,7 +95,7 @@ func selectAll(w http.ResponseWriter, r *http.Request) {
 
 for rows.Next() {
 	user := new(Users)
-	err = rows.Scan(&user.ID, &user.Name, &user.Email)
+	err = rows.Scan(&user.ID, &user.Name, &user.Email, &user.CreatedAt, &user.UpdatedAt)
 	if err != nil {
 		fmt.Println(err)
 	}
